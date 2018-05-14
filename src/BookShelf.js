@@ -4,15 +4,15 @@ import Book from './Book'
 class BookShelf extends Component {
 
   render() {
-    const { books } = this.props
-    console.log(books)
+    const { shelf, books } = this.props
+    console.log(shelf)
 
     return (
       <div className="bookshelf">
-        <h2 className="bookshelf-title">Currently Reading</h2>
+        <h2 className="bookshelf-title">{Object.values(shelf)[0]}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-            {books.filter(book => book.shelf === "currentlyReading").map((book) => (
+            {books.filter(book => book.shelf === Object.keys(shelf)[0]).map((book) => (
               <Book key={book.id} bookInfo={book}
               />
             ))}
