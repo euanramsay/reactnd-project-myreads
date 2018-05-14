@@ -24,7 +24,7 @@ class ListBooks extends Component {
           <div className="list-books-content">
             <div>
               <div className="bookshelf">
-                <BookShelf />
+                <BookShelf books={this.state.books}/>
                 </div>
               </div>
             </div>
