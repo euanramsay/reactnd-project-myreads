@@ -1,18 +1,34 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { search } from "./BooksAPI";
-import Book from './Book'
+import {DebounceInput} from 'react-debounce-input';
+import { getAll, search } from "./BooksAPI";
+import Book from "./Book";
 
 class SearchBook extends Component {
   state = {
     query: "",
-    books: []
+    books: [],
+    myBooks: []
   };
 
+  componentDidMount() {
+    getAll().then(books => {
+      this.setState({ myBooks: books });
+    });
+  }
+
   updateQuery(query) {
-    search(query).then(books => (
-      books ? this.setState({ books }) : []));
+    search(query).then(books => (books ? this.setState({ books }) : []));
     this.setState({ query });
+  }
+
+  filterResults(book) {
+    const myBooksISBN = this.state.myBooks.map(
+      myBook => myBook.industryIdentifiers[0].identifier
+    );
+    if (book) {
+      return myBooksISBN.includes(book.industryIdentifiers[0].identifier);
+    }
   }
 
   renderSearchResults() {
@@ -20,8 +36,10 @@ class SearchBook extends Component {
       return this.state.books.error ? (
         <div>No search results found</div>
       ) : (
-        this.state.books.map((book) => {
-          return <Book key={book.id} bookInfo={book}/>;
+        this.state.books.map(book => {
+          if (!this.filterResults(book)) {
+            return <Book key={book.id} bookInfo={book} />;
+          }
         })
       );
     }
@@ -35,7 +53,9 @@ class SearchBook extends Component {
             Close
           </Link>
           <div className="search-books-input-wrapper">
-            <input
+            <DebounceInput
+              minLength={3}
+              debounceTimeout={300}
               type="text"
               placeholder="Search by title or author"
               value={this.state.query}
@@ -44,9 +64,7 @@ class SearchBook extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid">
-            {this.renderSearchResults()}
-          </ol>
+          <ol className="books-grid">{this.renderSearchResults()}</ol>
         </div>
       </div>
     );

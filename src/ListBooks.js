@@ -2,19 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { getAll } from "./BooksAPI";
 import BookShelf from "./BookShelf";
+import * as shelfValues from "./ShelfValues"
 
 class ListBooks extends Component {
   state = {
-    books: [],
-    shelves: [
-      {
-        currentlyReading: "Currently Reading"
-      }, {
-        wantToRead: "Want to Read"
-      }, { 
-        read: "Read" 
-      }
-    ]
+    books: []
   };
 
   componentDidMount() {
@@ -33,7 +25,7 @@ class ListBooks extends Component {
           <div className="list-books-content">
             <div>
               <div className="bookshelf">
-                {this.state.shelves.map(shelf => (
+                {shelfValues.map(shelf => (
                   <BookShelf
                     key={Object.keys(shelf)[0]}
                     shelf={shelf}

@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import BookShelfChanger from './BookShelfChanger'
 
 class Book extends Component {
 
   render() {
+    const { bookInfo } = this.props
+
     return (
       <li>
         <div className="book">
@@ -12,20 +15,14 @@ class Book extends Component {
               style={{ 
                 width: 128, 
                 height: 193, 
-                backgroundImage: "url(" + this.props.bookInfo.imageLinks.thumbnail + ")" }}>
+                backgroundImage: "url(" + bookInfo.imageLinks.thumbnail + ")" }}>
               </div>
             <div className="book-shelf-changer">
-              <select>
-                <option value="none" disabled>Move to...</option>
-                <option value="currentlyReading">Currently Reading</option>
-                <option value="wantToRead">Want to Read</option>
-                <option value="read">Read</option>
-                <option value="none">None</option>
-              </select>
+              <BookShelfChanger book={bookInfo}/>
             </div>
           </div>
-          <div className="book-title">{this.props.bookInfo.title}</div>
-          <div className="book-authors">{this.props.bookInfo.authors}</div>
+          <div className="book-title">{bookInfo.title}</div>
+          <div className="book-authors">{bookInfo.authors}</div>
         </div>
       </li>
     )
