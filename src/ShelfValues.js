@@ -1,11 +1,11 @@
 module.exports = [
     {
-      currentlyReading: "Currently Reading"
+      currentlyReading: 'Currently Reading'
     },
     {
-      wantToRead: "Want to Read"
+      wantToRead: 'Want to Read'
     },
     {
-      read: "Read"
+      read: 'Read'
     }
   ]
