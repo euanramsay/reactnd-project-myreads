@@ -1,20 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { getAll } from "./BooksAPI";
 import BookShelf from "./BookShelf";
 import * as shelfValues from "./ShelfValues"
 
 class ListBooks extends Component {
-  state = {
-    books: []
-  };
-
-  componentDidMount() {
-    getAll().then(books => {
-      this.setState({ books });
-    });
-  }
-
+  
   render() {
     return (
       <div className="app">
@@ -29,7 +19,8 @@ class ListBooks extends Component {
                   <BookShelf
                     key={Object.keys(shelf)[0]}
                     shelf={shelf}
-                    books={this.state.books}
+                    books={this.props.books}
+                    changeShelf={this.props.changeShelf}
                   />
                 ))}
               </div>

@@ -1,21 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {DebounceInput} from 'react-debounce-input';
-import { getAll, search } from "./BooksAPI";
+import { search } from "./BooksAPI";
 import Book from "./Book";
 
 class SearchBook extends Component {
   state = {
     query: "",
-    books: [],
-    myBooks: []
+    books: []
   };
-
-  componentDidMount() {
-    getAll().then(books => {
-      this.setState({ myBooks: books });
-    });
-  }
 
   updateQuery(query) {
     search(query).then(books => (books ? this.setState({ books }) : []));
@@ -23,7 +16,7 @@ class SearchBook extends Component {
   }
 
   filterResults(book) {
-    const myBooksISBN = this.state.myBooks.map(
+    const myBooksISBN = this.props.myBooks.map(
       myBook => myBook.industryIdentifiers[0].identifier
     );
     if (book) {
@@ -38,7 +31,7 @@ class SearchBook extends Component {
       ) : (
         this.state.books.map(book => {
           if (!this.filterResults(book)) {
-            return <Book key={book.id} bookInfo={book} />;
+            return <Book key={book.id} bookInfo={book} changeShelf={this.changeShelf}/>;
           }
         })
       );

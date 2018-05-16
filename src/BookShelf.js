@@ -4,7 +4,7 @@ import Book from './Book'
 class BookShelf extends Component {
 
   render() {
-    const { shelf, books } = this.props
+    const { changeShelf, shelf, books } = this.props
 
     return (
       <div className="bookshelf">
@@ -12,7 +12,10 @@ class BookShelf extends Component {
         <div className="bookshelf-books">
           <ol className="books-grid">
             {books.filter(book => book.shelf === Object.keys(shelf)[0]).map((book) => (
-              <Book key={book.id} bookInfo={book}
+              <Book 
+                key={book.id} 
+                bookInfo={book}
+                changeShelf={changeShelf}
               />
             ))}
           </ol>

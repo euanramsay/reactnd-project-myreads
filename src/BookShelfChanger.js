@@ -8,16 +8,14 @@ class BookShelfChanger extends Component {
     shelf: ''
   }
 
-  handleChange(event) {
-    update(this.props.book, event.target.value).then(
-      this.setState({ book: this.props.book })
-    )
-  }
 
   render() {
-    const { book } = this.props;
+    const { changeShelf, book } = this.props;
     return (
-      <select value={this.state.value} defaultValue={book.shelf ? book.shelf : 'none'} onChange={this.handleChange.bind(this)}>
+      <select 
+        value={this.state.value} 
+        defaultValue={book.shelf ? book.shelf : 'none'} 
+        onChange={(event) => changeShelf(book, event.target.value)}>
         <option value="heading" disabled>
           Move to...
         </option>
