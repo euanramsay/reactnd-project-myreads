@@ -5,7 +5,7 @@ import ListBooks from './ListBooks'
 import SearchBook from './SearchBook'
 import { getAll, update } from './BooksAPI'
 
-class BooksApp extends Component {
+export default class BooksApp extends Component {
 
   state = {
     books: []
@@ -18,15 +18,16 @@ class BooksApp extends Component {
   } 
 
   changeShelf(book, shelf) {
-    update(book, shelf).then( () => {
-      getAll().then(books => {
+    update(book, shelf)
+      .then(getAll)
+      .then(books => {
         this.setState({ books })
       })
-    })
   }
 
   render() {
     this.changeShelf = this.changeShelf.bind(this)
+    
     return (
       <div>
         <Route exact path='/' render={() => 
@@ -38,4 +39,3 @@ class BooksApp extends Component {
   }
 }
 
-export default BooksApp;

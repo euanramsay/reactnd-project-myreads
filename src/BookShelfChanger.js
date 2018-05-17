@@ -1,26 +1,27 @@
 import React, { Component } from 'react'
-import * as shelves from './ShelfValues'
+import shelfValues from './ShelfValues'
 
-class BookShelfChanger extends Component {
-
-  state = {
-    shelf: ''
-  }
+export default class BookShelfChanger extends Component {
 
   render() {
     const { changeShelf, book } = this.props;
+    
     return (
-      <select 
-        value={this.state.value} 
+      <select
         defaultValue={book.shelf ? book.shelf : 'none'} 
         onChange={(event) => changeShelf(book, event.target.value)}>
         <option value='heading' disabled>
           Move to...
         </option>
-        {shelves.map(shelf => {
-          return <option key={Object.keys(shelf)[0]} value={Object.keys(shelf)[0]}>
-            {Object.values(shelf)[0]}
-          </option>
+            {
+              Object.keys(shelfValues).map(shelfId => {
+                const shelfName = shelfValues[shelfId]
+                return (
+                  <option key={shelfId} value={shelfId}>
+                    {shelfName}
+                  </option>
+                )
+            })}
         })}
         <option value='none'>None</option>
       </select>
@@ -28,4 +29,3 @@ class BookShelfChanger extends Component {
   }
 }
 
-export default BookShelfChanger;

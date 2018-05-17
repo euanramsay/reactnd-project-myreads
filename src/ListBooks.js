@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
-import * as shelfValues from './ShelfValues'
+import shelfValues from './ShelfValues'
 
-class ListBooks extends Component {
-  
+export default class ListBooks extends Component {
+
   render() {
+    
     return (
       <div className='app'>
         <div className='list-books'>
@@ -15,13 +16,15 @@ class ListBooks extends Component {
           <div className='list-books-content'>
             <div>
               <div className='bookshelf'>
-                {shelfValues.map(shelf => (
-                  <BookShelf
-                    key={Object.keys(shelf)[0]}
-                    shelf={shelf}
-                    books={this.props.books}
-                    changeShelf={this.props.changeShelf}
-                  />
+                {
+                  Object.entries(shelfValues).map(shelf => (
+                    <BookShelf
+                      key={shelf[0]}
+                      shelfId={shelf[0]}
+                      shelfName={shelf[1]}
+                      books={this.props.books}
+                      changeShelf={this.props.changeShelf}
+                    />
                 ))}
               </div>
             </div>
@@ -35,4 +38,3 @@ class ListBooks extends Component {
   }
 }
 
-export default ListBooks;

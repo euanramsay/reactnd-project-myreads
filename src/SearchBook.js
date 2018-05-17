@@ -1,44 +1,23 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import {DebounceInput} from 'react-debounce-input'
+import { DebounceInput } from 'react-debounce-input'
 import { search } from './BooksAPI'
 import Book from './Book'
 
-class SearchBook extends Component {
+export default class SearchBook extends Component {
   state = {
     query: '',
     books: []
   }
 
   updateQuery(query) {
-    search(query).then(books => (books ? this.setState({ books }) : []))
+    search(query)
+      .then(books => (books ? this.setState({ books }) : []))
     this.setState({ query })
   }
 
-  filterResults(book) {
-    const myBooksISBN = this.props.myBooks.map(
-      myBook => myBook.industryIdentifiers[0].identifier
-    );
-    if (book) {
-      return myBooksISBN.includes(book.industryIdentifiers[0].identifier);
-    }
-  }
-
-  renderSearchResults() {
-    if (this.state.query) {
-      return this.state.books.error ? (
-        <div>No search results found</div>
-      ) : (
-        this.state.books.map(book => {
-          if (!this.filterResults(book)) {
-            return <Book key={book.id} bookInfo={book} changeShelf={this.props.changeShelf}/>;
-          }
-        })
-      )
-    }
-  }
-
   render() {
+    const myBookISBNs = this.props.myBooks.map(book => book.industryIdentifiers[0].identifier)
     return (
       <div className='search-books'>
         <div className='search-books-bar'>
@@ -57,11 +36,25 @@ class SearchBook extends Component {
           </div>
         </div>
         <div className='search-books-results'>
-          <ol className='books-grid'>{this.renderSearchResults()}</ol>
+          <ol className='books-grid'>{
+            this.state.books.error
+              ? <div>No search results found</div>
+              : this.state.books
+                  .filter(
+                    book => !myBookISBNs.includes(
+                      book.industryIdentifiers[0].identifier
+                    )
+                  )
+                  .map(book => 
+                    <Book 
+                      key={book.id} 
+                      bookInfo={book} 
+                      changeShelf={this.props.changeShelf}
+                    />)
+          }</ol>
         </div>
       </div>
     )
   }
 }
 
-export default SearchBook;

@@ -5,7 +5,7 @@ class Book extends Component {
 
   render() {
     const { changeShelf, bookInfo } = this.props
-
+    
     return (
       <li>
         <div className='book'>
