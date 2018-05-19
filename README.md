@@ -1,6 +1,6 @@
 # MyReads Project
 
-This is app which allows a user to keep track of books they are reading, want to read or have read. The user can search for other books and add them to those categories, they can also remove them.
+This is an app which allows a user to keep track of books they are reading, want to read or have read. The user can search for other books and add them to those categories, they can also remove them.
 
 This is the first project in the Udacity React Nanodegree. 
 

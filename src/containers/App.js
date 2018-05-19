@@ -6,7 +6,8 @@ import SearchBook from './SearchBook';
 import { getAll, update } from '../BooksAPI';
 
 /**
- * @description Main App container.
+ * @description Main App container. Renders main user's books page or
+ * search screen depending on route.
  */
 export default class BooksApp extends Component {
   constructor() {
