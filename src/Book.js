@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import BookShelfChanger from './BookShelfChanger'
 
-export default function Book ({ changeShelf, bookInfo }) {
+export default function Book ({ bookInfo, changeShelf }) {
     return (
       <li>
         <div className='book'>
@@ -22,4 +23,9 @@ export default function Book ({ changeShelf, bookInfo }) {
         </div>
       </li>
     )
+  }
+
+  Book.propTypes = {
+    bookInfo: PropTypes.object.isRequired,
+    changeShelf: PropTypes.func.isRequired
   }

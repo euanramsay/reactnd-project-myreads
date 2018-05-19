@@ -1,5 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import shelfValues from './ShelfValues'
+
 
 export default function BookShelfChanger ({ book, changeShelf }) {
   return (
@@ -22,4 +24,9 @@ export default function BookShelfChanger ({ book, changeShelf }) {
         <option value='none'>None</option>
       </select>
     )
+  }
+
+  BookShelfChanger.propTypes = {
+    book: PropTypes.object.isRequired,
+    changeShelf: PropTypes.func.isRequired
   }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 import shelfValues from './ShelfValues'
 
@@ -33,3 +34,9 @@ export default function ListBooks({ books, changeShelf }) {
       </div>
     )
   }
+
+  ListBooks.propTypes = {
+    books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired
+  }
+

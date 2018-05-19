@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { DebounceInput } from 'react-debounce-input'
+import PropTypes from 'prop-types'
 import { search } from './BooksAPI'
 import Book from './Book'
 
@@ -58,3 +59,7 @@ export default class SearchBook extends Component {
   }
 }
 
+SearchBook.PropTypes = {
+  book: PropTypes.object.isRequired,
+  changeShelf: PropTypes.func.isRequired
+}
