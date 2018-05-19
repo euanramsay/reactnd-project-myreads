@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
-import shelfValues from './ShelfValues'
+import shelfValues from '../enums/ShelfValues'
 
 export default function ListBooks({ books, changeShelf }) {
     return (

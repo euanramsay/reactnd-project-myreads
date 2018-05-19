@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import shelfValues from './ShelfValues'
-
+import shelfValues from '../enums/ShelfValues'
 
 export default function BookShelfChanger ({ book, changeShelf }) {
   return (

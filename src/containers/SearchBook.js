@@ -2,14 +2,22 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { DebounceInput } from 'react-debounce-input'
 import PropTypes from 'prop-types'
-import { search } from './BooksAPI'
-import Book from './Book'
+import { search } from '../BooksAPI'
+import Book from '../components/Book'
 
 export default class SearchBook extends Component {
-  state = {
-    query: '',
-    books: []
+  constructor(props) {
+    super()
+    this.state = {
+      query: '',
+      books: []
+    }
   }
+  static PropTypes = {
+    book: PropTypes.object.isRequired,
+    changeShelf: PropTypes.func.isRequired
+  }
+  
 
   updateQuery(query) {
     search(query)
@@ -59,7 +67,3 @@ export default class SearchBook extends Component {
   }
 }
 
-SearchBook.PropTypes = {
-  book: PropTypes.object.isRequired,
-  changeShelf: PropTypes.func.isRequired
-}

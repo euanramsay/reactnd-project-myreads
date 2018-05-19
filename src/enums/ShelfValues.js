@@ -1,8 +1,8 @@
-const shelfValues = {
+const shelfValues = Object.freeze({
       currentlyReading: 'Currently Reading',
       wantToRead: 'Want to Read',
       read: 'Read'
-}
+})
 
 export default shelfValues
   

@@ -1,25 +1,24 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import './App.css'
-import ListBooks from './ListBooks'
+import ListBooks from '../components/ListBooks'
 import SearchBook from './SearchBook'
-import { getAll, update } from './BooksAPI'
+import { getAll, update } from '../BooksAPI'
 
 export default class BooksApp extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
+    this.state = {
+      books: []
+    }
     this.changeShelf = this.changeShelf.bind(this)
-  }
-
-  state = {
-    books: []
   }
 
   componentDidMount() {
     getAll().then(books => {
       this.setState({ books })
     })
-  } 
+  }
 
   /**
   * @description Allows user to choose a new shelf for a book by creating
