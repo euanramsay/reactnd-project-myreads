@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import shelfValues from '../enums/ShelfValues'
+import SHELF_VALUES from '../enums/ShelfValues'
 
 /**
   * @description Renders a dropdown menu of user option to move book and takes in
@@ -15,8 +15,8 @@ export default function BookShelfChanger ({ book, changeShelf }) {
           Move to...
         </option>
             {
-              Object.keys(shelfValues).map(shelfId => {
-                const shelfName = shelfValues[shelfId]
+              Object.keys(SHELF_VALUES).map(shelfId => {
+                const shelfName = SHELF_VALUES[shelfId]
                 return (
                   <option key={shelfId} value={shelfId}>
                     {shelfName}

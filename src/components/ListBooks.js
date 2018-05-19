@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
-import shelfValues from '../enums/ShelfValues'
+import SHELF_VALUES from '../enums/ShelfValues'
 
 /**
   * @description Renders the main page with the users bookshelves and books.
@@ -18,7 +18,7 @@ export default function ListBooks({ books, changeShelf }) {
             <div>
               <div className='bookshelf'>
                 {
-                  Object.entries(shelfValues).map(shelf => (
+                  Object.entries(SHELF_VALUES).map(shelf => (
                     <BookShelf
                       key={shelf[0]}
                       shelfId={shelf[0]}
