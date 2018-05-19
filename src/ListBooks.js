@@ -1,12 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
 import shelfValues from './ShelfValues'
 
-export default class ListBooks extends Component {
-
-  render() {
-    
+export default function ListBooks({ books, changeShelf }) {
     return (
       <div className='app'>
         <div className='list-books'>
@@ -22,8 +19,8 @@ export default class ListBooks extends Component {
                       key={shelf[0]}
                       shelfId={shelf[0]}
                       shelfName={shelf[1]}
-                      books={this.props.books}
-                      changeShelf={this.props.changeShelf}
+                      books={books}
+                      changeShelf={changeShelf}
                     />
                 ))}
               </div>
@@ -36,5 +33,3 @@ export default class ListBooks extends Component {
       </div>
     )
   }
-}
-

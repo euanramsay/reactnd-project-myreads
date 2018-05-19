@@ -1,12 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import shelfValues from './ShelfValues'
 
-export default class BookShelfChanger extends Component {
-
-  render() {
-    const { changeShelf, book } = this.props;
-    
-    return (
+export default function BookShelfChanger ({ book, changeShelf }) {
+  return (
       <select
         defaultValue={book.shelf ? book.shelf : 'none'} 
         onChange={(event) => changeShelf(book, event.target.value)}>
@@ -27,5 +23,3 @@ export default class BookShelfChanger extends Component {
       </select>
     )
   }
-}
-

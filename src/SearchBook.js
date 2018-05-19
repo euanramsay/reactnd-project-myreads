@@ -17,7 +17,7 @@ export default class SearchBook extends Component {
   }
 
   render() {
-    const myBookISBNs = this.props.myBooks.map(book => book.industryIdentifiers[0].identifier)
+    const myBookIds = this.props.myBooks.map(book => book.id)
     return (
       <div className='search-books'>
         <div className='search-books-bar'>
@@ -41,8 +41,8 @@ export default class SearchBook extends Component {
               ? <div>No search results found</div>
               : this.state.books
                   .filter(
-                    book => !myBookISBNs.includes(
-                      book.industryIdentifiers[0].identifier
+                    book => !myBookIds.includes(
+                      book.id
                     )
                   )
                   .map(book => 
