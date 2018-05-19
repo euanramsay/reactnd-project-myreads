@@ -10,11 +10,13 @@ Using npm:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
+* to create a production bundle, use `npm run build`
 
 Using Yarn:
 
-* if you are using Yarn - install all project dependencies with `yarn install`
+* install all project dependencies with `yarn install`
 * start the development server with `yarn start`
+* to create a production bundle, use `yarn build`
 
 ## Backend Server
 
