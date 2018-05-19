@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Book from './Book'
 
+/**
+  * @description Renders a bookshelf containing books that have that bookshelf value.
+  */
 export default function BookShelf({ books, changeShelf, shelfId, shelfName }) {
     return (
       <div className='bookshelf'>
@@ -30,4 +33,3 @@ export default function BookShelf({ books, changeShelf, shelfId, shelfName }) {
     shelfId: PropTypes.string.isRequired,
     shelfName: PropTypes.string.isRequired
   }
-

@@ -2,6 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import shelfValues from '../enums/ShelfValues'
 
+/**
+  * @description Renders a dropdown menu of user option to move book and takes in
+  * value of selection and calls changeShelf function with value.
+  */
 export default function BookShelfChanger ({ book, changeShelf }) {
   return (
       <select

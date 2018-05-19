@@ -5,6 +5,9 @@ import ListBooks from '../components/ListBooks'
 import SearchBook from './SearchBook'
 import { getAll, update } from '../BooksAPI'
 
+/**
+  * @description Main App container.
+  */
 export default class BooksApp extends Component {
   constructor() {
     super()
@@ -21,13 +24,11 @@ export default class BooksApp extends Component {
   }
 
   /**
-  * @description Allows user to choose a new shelf for a book by creating
-  * a drop down menu and taking value selected. Updates the value of shelf
-  * property in book object and updates user's book data using API. Then  
-  * gets updated list of users books. 
-  * @param {object} book
-  * @param {object} shelf
-  */
+    * @description Updates the value of shelf property in book object and updates
+    * user's book data using API. Then gets updated list of users books.
+    * @param {object} book - The book the user has made selection on.
+    * @param {object} shelf - The book shelf to move book to.
+    */
   changeShelf(book, shelf) {
     update(book, shelf)
       .then(getAll)
@@ -47,4 +48,3 @@ export default class BooksApp extends Component {
     )
   }
 }
-

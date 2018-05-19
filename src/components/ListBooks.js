@@ -4,6 +4,9 @@ import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 import shelfValues from '../enums/ShelfValues'
 
+/**
+  * @description Renders the main page with the users bookshelves and books.
+  */
 export default function ListBooks({ books, changeShelf }) {
     return (
       <div className='app'>
@@ -39,4 +42,3 @@ export default function ListBooks({ books, changeShelf }) {
     books: PropTypes.array.isRequired,
     changeShelf: PropTypes.func.isRequired
   }
-

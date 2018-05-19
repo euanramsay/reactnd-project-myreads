@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BookShelfChanger from './BookShelfChanger'
 
+/**
+  * @description Renders an individual book with clickable book shelf changer icon.
+  */
 export default function Book ({ bookInfo, changeShelf }) {
     return (
       <li>
