@@ -15,7 +15,9 @@ export default function Book({ bookInfo, changeShelf }) {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${bookInfo.imageLinks.thumbnail})`
+              backgroundImage: bookInfo.imageLinks
+                ? `url(${bookInfo.imageLinks.thumbnail})`
+                : null
             }}
           />
           <div className="book-shelf-changer">
