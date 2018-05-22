@@ -10,14 +10,14 @@ import Book from '../components/Book';
  */
 export default class SearchBook extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       query: '',
       books: []
     };
   }
-  static PropTypes = {
-    book: PropTypes.object.isRequired,
+  static propTypes = {
+    myBooks: PropTypes.array.isRequired,
     changeShelf: PropTypes.func.isRequired
   };
 

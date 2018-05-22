@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import './App.css';
 import ListBooks from '../components/ListBooks';
 import SearchBook from './SearchBook';
 import { getAll, update } from '../BooksAPI';
+import './App.css';
 
 /**
  * @description Main App container. Renders main user's books page or
@@ -31,11 +31,12 @@ export default class BooksApp extends Component {
    * @param {object} shelf - The book shelf to move book to.
    */
   changeShelf(book, shelf) {
-    update(book, shelf)
-      .then(getAll)
-      .then(books => {
-        this.setState({ books });
+    update(book, shelf).then(books => {
+      book.shelf = shelf;
+      this.setState({
+        books: this.state.books.filter(b => b.id !== book.id).concat(book)
       });
+    });
   }
 
   render() {
