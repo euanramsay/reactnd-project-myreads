@@ -26,12 +26,31 @@ export default class SearchBook extends Component {
    * @param {string} query - Search term typed by user.
    */
   updateQuery(query) {
-    search(query).then(books => (books ? this.setState({ books }) : []));
+    search(query).then(books => (books ? this.addShelf(books) : []));
     this.setState({ query });
   }
 
+  /**
+   * @description Takes the array of books returned by search and compares with users
+   * collection of books. If the user already has one of the books on their shelves, the
+   * name of that shelf is allocated to that book.
+   * @param {array} books - Array of book objects returned from search.
+   */
+  addShelf(books) {
+    const searchedBooks = books.map(book => {
+      this.props.myBooks.forEach(myBook => {
+        if (book.id === myBook.id) {
+          book.shelf = myBook.shelf;
+        }
+      });
+      return book;
+    });
+    this.setState({
+      books: searchedBooks
+    });
+}
+
   render() {
-    const myBookIds = this.props.myBooks.map(book => book.id);
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -55,7 +74,6 @@ export default class SearchBook extends Component {
               <div>No search results found</div>
             ) : (
               this.state.books
-                .filter(book => !myBookIds.includes(book.id))
                 .map(book => (
                   <Book
                     key={book.id}
