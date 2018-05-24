@@ -48,7 +48,7 @@ export default class SearchBook extends Component {
     this.setState({
       books: searchResultBooks
     });
-}
+  }
 
   render() {
     return (
@@ -73,14 +73,13 @@ export default class SearchBook extends Component {
             {this.state.books.error ? (
               <div>No search results found</div>
             ) : (
-              this.state.books
-                .map(book => (
-                  <Book
-                    key={book.id}
-                    bookInfo={book}
-                    changeShelf={this.props.changeShelf}
-                  />
-                ))
+              this.state.books.map(book => (
+                <Book
+                  key={book.id}
+                  bookInfo={book}
+                  changeShelf={this.props.changeShelf}
+                />
+              ))
             )}
           </ol>
         </div>
