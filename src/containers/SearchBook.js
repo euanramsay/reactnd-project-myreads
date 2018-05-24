@@ -37,7 +37,7 @@ export default class SearchBook extends Component {
    * @param {array} books - Array of book objects returned from search.
    */
   addShelf(books) {
-    const searchedBooks = books.map(book => {
+    const searchResultBooks = books.map(book => {
       this.props.myBooks.forEach(myBook => {
         if (book.id === myBook.id) {
           book.shelf = myBook.shelf;
@@ -46,7 +46,7 @@ export default class SearchBook extends Component {
       return book;
     });
     this.setState({
-      books: searchedBooks
+      books: searchResultBooks
     });
 }
 
